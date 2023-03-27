@@ -1,0 +1,126 @@
+﻿@*@model IEnumerable<DealCompanyNew.User>*@
+@model PagedList.IPagedList<DealCompanyNew.User>
+@using PagedList.Mvc;
+@*@{
+        ViewBag.Title = "Index";
+    }*@
+
+<h2>Users</h2>
+@using (Html.BeginForm("DeleteSelected", "Users", FormMethod.Post))
+{
+
+<p>
+    @Html.ActionLink("Create New User", "Create", null, new { @class = "btn btn-success" })
+
+    <input type="submit" data-toggle="modal" data-target="#myModal" value="Delete Selected Students" onclick="return confirm('Are you sure you wish to delete selected Students?');" class="btn btn-danger" />
+
+
+    <span>@ViewBag.deleteuser</span>
+    
+
+</p>
+    <table class="table table-responsive table-bordered table-striped table-hover ">
+        <tr>
+            <th>
+                @Html.DisplayName("Server DateTime")
+            </th>
+            <th>
+                @Html.DisplayName("DateTime UTC")
+            </th>
+            <th>
+                @Html.DisplayName("Update DateTime UTC")
+            </th>
+            <th>
+                @Html.DisplayName("Last Login DateTime UTC")
+            </th>
+            <th>
+                @Html.DisplayName("User Name")
+            </th>
+            <th>
+                @Html.DisplayName("Email")
+            </th>
+            <th>
+                @Html.DisplayName("Phone")
+            </th>
+            <th>
+                @Html.DisplayName("Status")
+            </th>
+            <th>
+                @Html.DisplayName("Gender")
+            </th>
+            <th>
+                @Html.DisplayName("Date_Of_Birth")
+            </th>
+            <th>
+                @Html.DisplayName("Password")
+            </th>
+            <th>
+                @Html.DisplayName("Image")
+            </th>
+            <th>
+                @Html.DisplayName("UserType")
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Server_DateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateTime_UTC)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Update_DateTime_UTC)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Last_Login_DateTime_UTC)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date_Of_Birth)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Password)
+                </td>
+                <td>
+                    
+
+                    <img width="100" height="100" src="@Url.Content("~/Content/Images/" + item.Image + "")" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserType)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-primary btn-lg btn-block" })
+                    @*@Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-" }) |*@
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID },
+                new { @class = "btn btn-danger btn-lg btn-block", onclick = "return confirm('Are you sure you wish to delete this Users?');" })
+
+                    <input type="checkbox" name="ids" value="@item.ID" />
+                </td>
+            </tr>
+        }
+
+        @*@Html.ActionLink("DeleteSelecte", "DeleteSelecte")|*@
+    </table>
+}
+ Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, Page_No => Url.Action("Index",
+    new { Page_No, Sorting_Order = ViewBag.CurrentSortOrder, Filter_Value = ViewBag.FilterValue }))

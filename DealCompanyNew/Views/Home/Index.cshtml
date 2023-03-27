@@ -1,0 +1,190 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@{ Layout = "~/Views/Shared/_layouthome.cshtml";}
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+<style>
+    .container {
+        position: relative;
+        text-align: center;
+        color: darkblue;
+    }
+
+    .centered {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 30px;
+        color: darkblue;
+        text-align: center;
+    }
+
+    .center {
+        position: absolute;
+        top: 80%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+
+    .fa {
+        padding: 20px;
+        font-size: 30px;
+        width: 30px;
+        text-align: center;
+        text-decoration: none;
+        margin: 5px 2px;
+        border-radius: 50%;
+        display: initial !important;
+    }
+
+        .fa:hover {
+            opacity: 0.7;
+        }
+
+    .fa-facebook {
+        background: #3B5998;
+        color: white;
+    }
+
+    .fa-twitter {
+        background: #55ACEE;
+        color: white;
+    }
+
+    .fa-google {
+        background: #dd4b39;
+        color: white;
+    }
+
+    .fa-linkedin {
+        background: #007bb5;
+        color: white;
+    }
+
+    .fa-youtube {
+        background: #bb0000;
+        color: white;
+    }
+</style>
+<div class="container-fluid  "
+     <div class="row ">
+     <style ></style>
+    <div class="w3-content w3-section col-xs-12" style="max-width:100%;height:100%">
+
+        <img class="mySlides" src="~/Content/Images/log.jpg" style="width:100%">
+        <img class="mySlides" src="~/Content/Images/loginpage.jpg" style="width:100%">
+        <img class="mySlides" src="~/Content/Images/logg.jpg" style="width:100%">
+        <img class="mySlides" src="~/Content/Images/white3.jpg" style="width:100%">
+        <div class="centered ">The global company welcomes you to the world of technology</div>
+        <div class="center " >
+
+            <a href="https://www.facebook.com" class="fa fa-facebook"></a>
+            <a href="https://www.google.com" class="fa fa-google"></a>
+            <a href="https://www.linkedin.com/company" class="fa fa-linkedin"></a>
+            <a href="https://youtube.com/user" class="fa fa-youtube"></a>
+
+        </div>
+
+    </div>
+    @*<section class="hsg-footer__contact-links">
+            <ul class="hsg-footer__social">
+                <li>
+                    <a href="https://www.facebook.com" target="_blank" class="hstc_facebook">
+                        <i class="hsg-icon hsg-icon-facebook"></i><span class="hidden-social">Facebook</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.instagram.com" target="_blank" class="hstc_instagram">
+                        <i class="hsg-icon hsg-icon-instagram"></i><span class="hidden-social">Instagram</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://youtube.com/user" target="_blank" class="hstc_youtube">
+                        <i class="hsg-icon hsg-icon-youtube"></i><span class="hidden-social">Youtube</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://twitter.com" target="_blank" class="hstc_twitter">
+                        <i class="hsg-icon hsg-icon-twitter"></i><span class="hidden-social">Twitter</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.linkedin.com/company/hubspot" target="_blank" class="hstc_linkedin">
+                        <i class="hsg-icon hsg-icon-linkedin"></i><span class="hidden-social">Linkedin</span>
+                    </a>
+                </li>
+                <li>
+
+                    <i class="hsg-icon hsg-icon-medium"></i><span class="hidden-social">Medium</span>
+                    </a>
+                </li>
+            </ul>
+        </section>*@
+
+</div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+    .mySlides {
+        display: none;
+    }
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+<script>
+    var myIndex = 0;
+    carousel();
+
+    function carousel() {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        myIndex++;
+        if (myIndex > x.length) { myIndex = 1 }
+        x[myIndex - 1].style.display = "block";
+        setTimeout(carousel, 2000); // Change image every 2 seconds
+    }
+</script>
+
+
+
+
+

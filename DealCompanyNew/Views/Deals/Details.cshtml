@@ -1,0 +1,82 @@
+﻿@model DealCompanyNew.Deal
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Deal</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Server_DateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Server_DateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateTime_UTC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateTime_UTC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Update_DateTime_UTC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Update_DateTime_UTC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Currency)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Currency)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

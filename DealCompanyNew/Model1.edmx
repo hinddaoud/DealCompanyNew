@@ -1,0 +1,258 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DealsCopmanyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ClaimedDeals">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_ID" Type="int" Nullable="false" />
+          <Property Name="Deal_ID" Type="int" Nullable="false" />
+          <Property Name="Server_DateTime" Type="datetime" />
+          <Property Name="DateTime_UTC" Type="datetime" />
+          <Property Name="Amount" Type="float" Nullable="false" />
+          <Property Name="Currency" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Deals">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Server_DateTime" Type="datetime" />
+          <Property Name="DateTime_UTC" Type="datetime" />
+          <Property Name="Update_DateTime_UTC" Type="datetime" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="Amount" Type="float" Nullable="false" />
+          <Property Name="Currency" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Server_DateTime" Type="datetime" />
+          <Property Name="DateTime_UTC" Type="datetime" />
+          <Property Name="Update_DateTime_UTC" Type="datetime" />
+          <Property Name="Last_Login_DateTime_UTC" Type="datetime" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="50" />
+          <Property Name="Date_Of_Birth" Type="datetime" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Image" Type="nvarchar(max)" />
+          <Property Name="UserType" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_ClaimedDeals_Deals">
+          <End Role="Deals" Type="Self.Deals" Multiplicity="1" />
+          <End Role="ClaimedDeals" Type="Self.ClaimedDeals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Deals">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ClaimedDeals">
+              <PropertyRef Name="Deal_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClaimedDeals_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="ClaimedDeals" Type="Self.ClaimedDeals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ClaimedDeals">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DealsCopmanyModelStoreContainer">
+          <EntitySet Name="ClaimedDeals" EntityType="Self.ClaimedDeals" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Deals" EntityType="Self.Deals" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ClaimedDeals_Deals" Association="Self.FK_ClaimedDeals_Deals">
+            <End Role="Deals" EntitySet="Deals" />
+            <End Role="ClaimedDeals" EntitySet="ClaimedDeals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClaimedDeals_Users" Association="Self.FK_ClaimedDeals_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ClaimedDeals" EntitySet="ClaimedDeals" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DealsCopmanyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ClaimedDeal">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_ID" Type="Int32" Nullable="false" />
+          <Property Name="Deal_ID" Type="Int32" Nullable="false" />
+          <Property Name="Server_DateTime" Type="DateTime" Precision="3" />
+          <Property Name="DateTime_UTC" Type="DateTime" Precision="3" />
+          <Property Name="Amount" Type="Double" Nullable="false" />
+          <Property Name="Currency" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Deal" Relationship="Self.FK_ClaimedDeals_Deals" FromRole="ClaimedDeals" ToRole="Deals" />
+          <NavigationProperty Name="User" Relationship="Self.FK_ClaimedDeals_Users" FromRole="ClaimedDeals" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Deal">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Server_DateTime" Type="DateTime" Precision="3" />
+          <Property Name="DateTime_UTC" Type="DateTime" Precision="3" />
+          <Property Name="Update_DateTime_UTC" Type="DateTime" Precision="3" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="Double" Nullable="false" />
+          <Property Name="Currency" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ClaimedDeals" Relationship="Self.FK_ClaimedDeals_Deals" FromRole="Deals" ToRole="ClaimedDeals" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Server_DateTime" Type="DateTime" Precision="3" />
+          <Property Name="DateTime_UTC" Type="DateTime" Precision="3" />
+          <Property Name="Update_DateTime_UTC" Type="DateTime" Precision="3" />
+          <Property Name="Last_Login_DateTime_UTC" Type="DateTime" Precision="3" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Date_Of_Birth" Type="DateTime" Precision="3" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ClaimedDeals" Relationship="Self.FK_ClaimedDeals_Users" FromRole="Users" ToRole="ClaimedDeals" />
+        </EntityType>
+        <Association Name="FK_ClaimedDeals_Deals">
+          <End Role="Deals" Type="Self.Deal" Multiplicity="1" />
+          <End Role="ClaimedDeals" Type="Self.ClaimedDeal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Deals">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ClaimedDeals">
+              <PropertyRef Name="Deal_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClaimedDeals_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="ClaimedDeals" Type="Self.ClaimedDeal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ClaimedDeals">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DealsCopmanyEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ClaimedDeals" EntityType="Self.ClaimedDeal" />
+          <EntitySet Name="Deals" EntityType="Self.Deal" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_ClaimedDeals_Deals" Association="Self.FK_ClaimedDeals_Deals">
+            <End Role="Deals" EntitySet="Deals" />
+            <End Role="ClaimedDeals" EntitySet="ClaimedDeals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClaimedDeals_Users" Association="Self.FK_ClaimedDeals_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ClaimedDeals" EntitySet="ClaimedDeals" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DealsCopmanyModelStoreContainer" CdmEntityContainer="DealsCopmanyEntities">
+          <EntitySetMapping Name="ClaimedDeals">
+            <EntityTypeMapping TypeName="DealsCopmanyModel.ClaimedDeal">
+              <MappingFragment StoreEntitySet="ClaimedDeals">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Deal_ID" ColumnName="Deal_ID" />
+                <ScalarProperty Name="Server_DateTime" ColumnName="Server_DateTime" />
+                <ScalarProperty Name="DateTime_UTC" ColumnName="DateTime_UTC" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Deals">
+            <EntityTypeMapping TypeName="DealsCopmanyModel.Deal">
+              <MappingFragment StoreEntitySet="Deals">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Server_DateTime" ColumnName="Server_DateTime" />
+                <ScalarProperty Name="DateTime_UTC" ColumnName="DateTime_UTC" />
+                <ScalarProperty Name="Update_DateTime_UTC" ColumnName="Update_DateTime_UTC" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="DealsCopmanyModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Server_DateTime" ColumnName="Server_DateTime" />
+                <ScalarProperty Name="DateTime_UTC" ColumnName="DateTime_UTC" />
+                <ScalarProperty Name="Update_DateTime_UTC" ColumnName="Update_DateTime_UTC" />
+                <ScalarProperty Name="Last_Login_DateTime_UTC" ColumnName="Last_Login_DateTime_UTC" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Date_Of_Birth" ColumnName="Date_Of_Birth" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

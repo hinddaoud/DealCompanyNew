@@ -1,0 +1,152 @@
+﻿@model DealCompanyNew.Models.LoginVM
+@{ Layout = "~/Views/Shared/_layoutlogin.cshtml";}
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    body {
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    /*body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+      
+
+    bor
+    border {
+        border-radius: 50px;
+    }*/
+    /*form {
+        border: 3px solid #f1f1f1;
+     width:500px;
+        margin-left:30%;
+        margin:20px
+    }*/
+    .spanlogin {
+        color: #909fa7;
+        font-style: italic;
+    }
+
+    input[type=text], input[type=password] {
+        width: 50%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #232627;
+        box-sizing: border-box;
+        color: #fdfdfd;
+    }
+
+    button {
+        background-color: #04AA6D;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+    }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+    .loginView {
+        border-radius: 69px;
+        width: 712px;
+        /*   margin-left: 65px;*/
+        margin-top: 78px;
+        opacity: 1;
+    }
+
+    .textlogin {
+        width: 357PX !important;
+        border-radius: 13px;
+        color: #fdfdfd;
+        background-color: #707f88c2;
+        border: navajowhite;
+        text-transform: capitalize;
+        height: 60px;
+    }
+
+    a:-webkit-any-link {
+        color: #8c979e;
+        cursor: pointer;
+        text-decoration: underline;
+    }
+</style>
+
+
+
+<body style=" background-image: url('/Content/Images/loginpage.jpg'); background-size: 100% 150%;  ">
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        
+    <div class="form-horizontal  col-md-push-6  loginView spanlogin">
+        <h4 style=" margin:10px; margin-left:30px;">@*@Resource.Login @Resource.Employee*@</h4>
+        <hr style="width:400px; margin-left:0px" />
+        <h4>Admin:</h4> 
+        <br />
+        Email:Admin@gmail.com    password:123
+        <br />
+        <h4>Normal user:</h4> 
+        <br />
+        Email:Hind@gmail.com     password:123
+        
+        <img />
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*<span style="color:rebeccapurple" class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>*@
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control textlogin ", @placeholder = " Email" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control textlogin  ", @placeholder = "Password" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" @*value="@Resource.Login"*@ class="btn btn-default textlogin  " style="width: 357PX; margin-top:20px;border: 1px solid #232627;" />
+                <div>@ViewBag.Errorlogon</div>
+            </div>
+        </div>
+    </div>
+    }
+
+    <div style="margin-left:65px;margin-top:50px ;color:white;">
+        @Html.ActionLink("Back to List", "Index","Home" ,new { @style = "color:white" },null)
+    </div>
+
+    <div style="margin-left:100px">
+
+        @*@Html.Partial("_LoginPartial");*@
+
+
+    </div>
+
+
+
+
+</body>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

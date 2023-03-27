@@ -1,0 +1,75 @@
+﻿@using System.Globalization
+@using DealCompanyNew
+@using System.Threading;
+@using DealCompanyNew Models;
+
+
+<style>
+    li {
+        margin-left: 30px;
+    }
+</style>
+
+<!DOCTYPE html>
+
+@*<html lang="en">*@
+@*<html lang="@CultureHelper.CurrentCulture" dir="@(CultureHelper.IsRighToLeft() ? "rtl" : "ltr")">*@
+<head>
+    @*<title>Bootstrap Example</title>*@
+    <title>Home</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    @*@Styles.Render("~/Content/css" + (CultureHelper.IsRighToLeft() ? "-rtl" : ""))*@
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top ">
+        <div class="container-fluid ">
+            <div class="navbar-header ">
+                @Html.ActionLink("Hope Company", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <ul style="margin-left:200px; font-size:20px" class="nav navbar-nav ">
+
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("About", "About", "Home")</li>
+                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+
+            </ul>
+
+            <div style="float: right;color:white; margin-top:10px ">
+
+                <a href="/Users/Login" style="color:darkblue;margin-right:200px ;width:20px  ;
+
+    font-size: 15px;
+    font-style: italic;
+    font-weight: 800;  ">Login</a>
+               
+            </div>
+
+        </div>
+    </nav>
+
+    <div background-size: 100% 100%;>
+
+        @RenderBody()
+
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @*@Scripts.Render("~/bundles/bootstrap" + (CultureHelper.IsRighToLeft() ? "-rtl" : ""))*@
+    @RenderSection("scripts", required: false)
+
+    @*@bundles.Add(new ScriptBundle("~/bundles/bootstrap-rtl").Include(
+        "~/Scripts/bootstrap-rtl.js",
+        "~/Scripts/respond.js"));
+
+        @bundles.Add(new StyleBundle("~/Content/css-rtl").Include(
+        "~/Content/bootstrap-rtl.css",
+        "~/Content/site.css"));*@
+
+</body>
+</html>

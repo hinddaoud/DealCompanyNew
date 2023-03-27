@@ -1,0 +1,228 @@
+﻿@model DealCompanyNew.Models.InformationVM
+
+@{
+    ViewBag.Title = "Information";
+}
+
+<h2>Information</h2>
+@{
+    var userInfo = (User)Session["UserInfo"];
+    var FN = userInfo.Name;
+    var ID = userInfo.ID;
+    var Email= userInfo.Email;
+    var typeinfo = userInfo.UserType;
+}
+
+<h4>InformationVM</h4>
+<hr />
+
+<dl class="dl-horizontal">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>FirstName</th>
+                <th>Email</th>
+                <th>Phone</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Html.DisplayFor(model => model.Name)</td>
+                <td> @Html.DisplayFor(model => model.Email)</td>
+                <td> @Html.DisplayFor(model => model.Phone)</td>
+            </tr>
+
+
+        </tbody>
+
+    </table>
+</dl>
+<div class="row">
+    <div class="col-6 col-sm-3">
+
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Server_DateTime)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Server_DateTime)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DateTime_UTC)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DateTime_UTC)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Update_DateTime_UTC)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Update_DateTime_UTC)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Last_Login_DateTime_UTC)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Last_Login_DateTime_UTC)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Phone)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Phone)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Status)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Status)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Gender)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Gender)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Date_Of_Birth)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Date_Of_Birth)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Password)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Password)
+            </dd>
+
+
+
+            <dt>
+                @Html.DisplayNameFor(model => model.UserType)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.UserType, new { id = "typeid" })
+            </dd>
+
+            @*<dt>
+                    @Html.DisplayNameFor(model => model.Amount)
+                </dt>*@
+
+            <dd>
+                <table class="table table-responsive table-bordered table-striped">
+
+                    <thead class="alert-info">Amount</thead>
+                    @{
+                        if (ViewBag.claCountCount == 0)
+                        {
+
+                            foreach (var item in Model.Amount)
+                            {
+
+
+                                <tr style="width:auto">
+                                    <td class="alert-info">@item.Amount</td>
+                                </tr>
+
+
+
+                            }
+                        }
+                    }
+                </table>
+
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Total)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Total)
+                <span></span>
+            </dd>
+
+        </dl>
+
+
+
+        <p>
+
+            @*@Html.ActionLink("Edit", "Edit","Users", new { id = Model.ID },null) |*@
+            <a id="editId" href="https://localhost:44339/Users/Edit/@ID">Edie</a>
+            @*@Html.ActionLink("Back to List", "Index")*@
+        </p>
+    </div>
+    <div class="col-6 col-sm-3">
+
+
+
+
+        @*@Html.DisplayFor(model => model.Image)*@
+
+        <img class="userImageInInfo" src="@Url.Content("~/Content/Images/" +  Model.Image + "")" />
+
+    </div>
+
+
+</div>
+
+<script>
+
+
+
+
+
+    var UserTypeinf = $("#typeid").text();
+
+    var c = "@Model.UserType"
+
+
+
+    if (c== "Admin") {
+        $("#editId").show();
+        $("#linkid").show();
+    } else if (c == "Normal") {
+
+        $("#editId").hide();
+        $("#linkid").hide();
+    }
+
+
+
+</script>

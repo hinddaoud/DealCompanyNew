@@ -1,0 +1,15 @@
+﻿body {
+    background-color:white !important;
+    margin-top:80px !important;
+    padding-top:60px!important;
+}
+
+.userImageInInfo{
+    height:300px !important;
+    width:300px !important;
+    margin:20%;
+}
+th {
+    color :white !important;
+    background-color:black !important
+}
